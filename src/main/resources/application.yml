@@ -1,0 +1,12 @@
+server:
+  address: localhost
+  port: ${port:8080}
+
+spring:
+  application:
+    name: starter
+  output:
+    ansi:
+      enabled: ALWAYS
+  profiles:
+    active: prod
