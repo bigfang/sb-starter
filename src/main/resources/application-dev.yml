@@ -4,3 +4,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/starter_dev
     username: pg
     password: pg
+
+  mybatis:
+    mapper-locations: classpath:mappers/*.xml
+    configuration:
+      map-underscore-to-camel-case: true

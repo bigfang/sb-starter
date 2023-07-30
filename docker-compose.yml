@@ -5,6 +5,7 @@ services:
     image: postgres:15-alpine
     restart: always
     environment:
+      - TZ=Asia/Shanghai
       - POSTGRES_USER=pg
       - POSTGRES_PASSWORD=pg
       - POSTGRES_DB=starter_dev

@@ -1,4 +1,4 @@
-package io.fang.starter.home;
+package io.fang.starter.application;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
