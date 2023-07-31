@@ -2,27 +2,31 @@ package io.fang.starter.application;
 
 import io.fang.starter.domain.account.User;
 import io.fang.starter.domain.account.UserService;
-import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+@RequestMapping("/users")
+@Tag(name = "用户")
 class UserController {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping("")
     List<User> findAll() {
         return userService.findAll();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     User findById(@PathVariable Long id) {
-        return userService.findById(id).isEmpty() ? null : userService.findById(id).get();
+        return userService.findById(id);
     }
 
 }

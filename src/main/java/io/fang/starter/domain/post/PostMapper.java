@@ -1,15 +1,11 @@
 package io.fang.starter.domain.post;
 
-import org.springframework.data.repository.ListCrudRepository;
-import org.springframework.data.repository.ListPagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
 
-public interface PostMapper extends ListCrudRepository<io.fang.starter.domain.post.Post, Long>, ListPagingAndSortingRepository<io.fang.starter.domain.post.Post, Long> {
+public interface PostMapper extends BaseMapper<Post> {
+    Post findById(Long id);
 
-    Post findByTitle(String title);
-
-    List<Post> findByTitleContaining(@Param("title") String title);
-
+    List<Post> findAll();
 }

@@ -2,21 +2,23 @@ package io.fang.starter.domain.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
 
     @Autowired
-    private UserMapper repo;
+    private UserMapper mapper;
 
+    @Transactional(readOnly = true)
     public List<User> findAll() {
-        return repo.findAll();
+        return mapper.selectList(null);
     }
 
-    public Optional<User> findById(Long id) {
-        return repo.findById(id);
+    @Transactional(readOnly = true)
+    public User findById(Long id) {
+        return mapper.selectById(id);
     }
 }

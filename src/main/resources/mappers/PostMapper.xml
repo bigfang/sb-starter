@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="io.fang.starter.domain.post.PostMapper">
+  <sql id="queryPost">
+    select p.id as id, p.title, p.body, p.created_at, p.updated_at, u.id as uid, u.username, u.birth_day
+    from posts p
+    join "users" u
+    on p.author_id = u.id
+  </sql>
+
+  <select id="findById" resultMap="post">
+    <include refid="queryPost"/>
+    where p.id = #{id}
+  </select>
+
+  <select id="findAll" resultMap="post">
+    <include refid="queryPost"/>
+  </select>
+
+  <resultMap id="post" type="io.fang.starter.domain.post.Post">
+    <id column="id" property="id"/>
+    <result column="title" property="title"/>
+    <result column="body" property="body"/>
+    <result column="created_at" property="createdAt"/>
+    <result column="updated_at" property="updatedAt"/>
+    <association property="author" javaType="io.fang.starter.domain.account.User">
+      <id column="uid" property="id"/>
+      <result column="username" property="username"/>
+      <result column="birth_day" property="birthDay"/>
+    </association>
+  </resultMap>
 </mapper>
