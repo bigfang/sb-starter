@@ -12,3 +12,8 @@ spring:
       enabled: ALWAYS
   profiles:
     active: prod
+
+jwt:
+  key:
+    priv: classpath:app.priv
+    pub: classpath:app.pub
