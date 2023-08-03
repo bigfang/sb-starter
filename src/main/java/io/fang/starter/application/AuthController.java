@@ -1,6 +1,7 @@
 package io.fang.starter.application;
 
 import io.fang.starter.application.dto.LoginDto;
+import io.fang.starter.application.dto.SignupDto;
 import io.fang.starter.domain.account.LoginUser;
 import io.fang.starter.domain.account.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -18,6 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 class AuthController {
     private final UserService userService;
+
+    @PostMapping("/signup")
+    LoginUser signup(@RequestBody SignupDto dto) {
+        return userService.signup(dto);
+    }
 
     @PostMapping("/login")
     LoginUser login(@RequestBody LoginDto dto) {

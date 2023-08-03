@@ -1,6 +1,7 @@
 package io.fang.starter.domain.account;
 
 import io.fang.starter.application.dto.LoginDto;
+import io.fang.starter.application.dto.SignupDto;
 import io.fang.starter.configuration.BearerTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,21 @@ public class UserService {
     @Transactional(readOnly = true)
     public User findByUsrname(String username) {
         return mapper.selectByUsername(username);
+    }
+
+    public LoginUser signup(SignupDto dto) {
+        if (mapper.selectByUsername(dto.getUsername()) != null) {
+            throw new IllegalArgumentException("Username `%s` is already exists.".formatted(dto.getUsername()));
+        }
+        User user = new User();
+        user.setUsername(dto.getUsername());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+        user.setBirthDay(dto.getBirthDay());
+        mapper.insert(user);
+
+        LoginUser loginUser = new LoginUser(user);
+        loginUser.setToken(bearerTokenProvider.createBearerToken(user));
+        return loginUser;
     }
 
     @Transactional(readOnly = true)

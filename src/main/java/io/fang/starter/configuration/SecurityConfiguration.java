@@ -46,6 +46,7 @@ public class SecurityConfiguration {
                 authorize -> authorize
                     .requestMatchers("/").permitAll()
                     .requestMatchers("/auth/login").permitAll()
+                    .requestMatchers("/auth/signup").permitAll()
                     .requestMatchers("/swagger-ui/**").permitAll()
                     .requestMatchers("v3/**").permitAll()
                     .anyRequest().authenticated())
