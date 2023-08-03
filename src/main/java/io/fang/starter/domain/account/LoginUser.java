@@ -1,6 +1,6 @@
 package io.fang.starter.domain.account;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -9,16 +9,16 @@ import java.time.LocalDate;
 public class LoginUser {
     private Long id;
     private String username;
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private LocalDate birthDay;
+    private LocalDate birthday;
     private String token;
     private String refreshToken;
 
     public LoginUser(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
-        this.birthDay = user.getBirthDay();
+        this.birthday = user.getBirthday();
         this.token = null;
         this.refreshToken = null;
     }

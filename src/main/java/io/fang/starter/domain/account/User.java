@@ -1,7 +1,7 @@
 package io.fang.starter.domain.account;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.fang.starter.support.AbstractEntity;
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @TableName("users")
 public class User extends AbstractEntity {
     private String username;
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private LocalDate birthDay;
+    private LocalDate birthday;
 }

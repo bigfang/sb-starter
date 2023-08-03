@@ -8,5 +8,5 @@ import java.time.LocalDate;
 public class SignupDto {
     private String username;
     private String password;
-    private LocalDate birthDay;
+    private LocalDate birthday;
 }

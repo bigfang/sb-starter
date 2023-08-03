@@ -41,7 +41,7 @@ public class UserService {
         User user = new User();
         user.setUsername(dto.getUsername());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        user.setBirthDay(dto.getBirthDay());
+        user.setBirthday(dto.getBirthday());
         mapper.insert(user);
 
         LoginUser loginUser = new LoginUser(user);
